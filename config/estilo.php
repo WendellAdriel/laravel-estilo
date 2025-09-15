@@ -9,14 +9,16 @@ Estilo::define(
     name: 'main-title',
     css: CSS::make()
         ->color('red')
-        ->fontSize('20px')
+        ->fontSize('20px'),
+    tags: ['common', 'headers'],
 );
 
 Estilo::define(
     name: 'sub-title',
     css: CSS::make()
         ->color('blue')
-        ->fontSize('15px')
+        ->fontSize('15px'),
+    tags: ['headers'],
 );
 
 return [];
