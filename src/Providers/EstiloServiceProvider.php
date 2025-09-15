@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WendellAdriel\Estilo\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 final class EstiloServiceProvider extends ServiceProvider
@@ -19,6 +20,12 @@ final class EstiloServiceProvider extends ServiceProvider
             ],
             'config'
         );
+
+        Blade::directive('estilo', function ($expression) {
+            $expression = $expression ?: '[]';
+
+            return "<?php echo \\WendellAdriel\\Estilo\\Estilo::styleSheet({$expression}); ?>";
+        });
     }
 
     /**
