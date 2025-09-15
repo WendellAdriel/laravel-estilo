@@ -1,0 +1,68 @@
+{
+    "name": "wendelladriel/laravel-estilo",
+    "description": "Manage your CSS in PHP and easily use it on Blade",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "css",
+        "ui",
+        "frontend"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "WendellAdriel\\Estilo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WendellAdriel\\Estilo\\Tests\\": "tests/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/WendellAdriel/laravel-estilo/issues",
+        "source": "https://github.com/WendellAdriel/laravel-estilo"
+    },
+    "authors": [
+        {
+            "name": "Wendell Adriel",
+            "email": "wendelladriel.ti@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/console": "^12.0",
+        "illuminate/database": "^12.0",
+        "illuminate/http": "^12.0",
+        "illuminate/support": "^12.0",
+        "illuminate/validation": "^12.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.21",
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^4.0"
+    },
+    "scripts": {
+        "lint": "pint --parallel",
+        "test:lint": "pint --parallel --test",
+        "test:unit": "./vendor/bin/pest --order-by random",
+        "test": [
+            "@test:lint",
+            "@test:unit"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WendellAdriel\\Estilo\\Providers\\EstiloServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

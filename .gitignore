@@ -1,0 +1,8 @@
+.DS_Store
+/vendor
+/.idea
+/.vagrant
+/.phpstorm.*
+/.phpunit.cache
+composer.lock
+.phpunit.result.cache
