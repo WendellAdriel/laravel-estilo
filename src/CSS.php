@@ -11,7 +11,7 @@ final class CSS
     /** @var array<string,string> */
     private array $properties;
 
-    public function __call(string $name, array $arguments): self
+    public function __call(string $name, array $arguments): CSS
     {
         $propertyName = Str::kebab($name);
         $propertyValue = implode(' ', $arguments);

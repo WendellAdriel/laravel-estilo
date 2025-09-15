@@ -9,9 +9,9 @@ final class Estilo
     /** @var array<string,CSS> */
     private static array $classes = [];
 
-    public static function define(string $name, CSS $class): void
+    public static function define(string $name, CSS $css): void
     {
-        self::$classes[$name] = $class;
+        self::$classes[$name] = $css;
     }
 
     public static function style(string $name): ?string
