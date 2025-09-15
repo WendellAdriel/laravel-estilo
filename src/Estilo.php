@@ -55,7 +55,7 @@ final class Estilo
             ];
         }
 
-        return $result;
+        return array_keys($result);
     }
 
     /**
@@ -74,5 +74,22 @@ final class Estilo
     public static function styleText(string $name): ?string
     {
         return self::style($name)?->style();
+    }
+
+    public static function styleSheet(array $tags = []): string
+    {
+        $selectedStyles = collect(self::$styles);
+        if ($tags !== []) {
+            $selectedStyles = $selectedStyles->only(self::tagged($tags));
+        }
+
+        $result = "<style>\n";
+
+        $result = $selectedStyles->reduce(
+            callback: fn (string $result, CSS $css, string $name) => "{$result}\t{$name} { {$css->style()} }\n",
+            initial: $result,
+        );
+
+        return "{$result}</style>";
     }
 }

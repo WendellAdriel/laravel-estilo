@@ -28,9 +28,9 @@ test('it returns tagged list', function () {
     $headers = Estilo::tagged(['headers']);
 
     expect($common)->toHaveCount(1)
-        ->and($common)->toHaveKey('main-title')
+        ->and($common)->toContain('main-title')
         ->and($headers)->toHaveCount(2)
-        ->and($headers)->toHaveKeys(['main-title', 'sub-title']);
+        ->and($headers)->toContain('main-title', 'sub-title');
 });
 
 test('it defines and forgets a tagged style', function () {
@@ -48,7 +48,7 @@ test('it defines and forgets a tagged style', function () {
     $test = Estilo::tagged(['test']);
 
     expect($test)->toHaveCount(1)
-        ->and($test)->toHaveKey('test');
+        ->and($test)->toContain('test');
 
     // Forget style to not mess with other tests
     Estilo::forget('test');
@@ -63,5 +63,15 @@ test('it defines and forgets a tagged style', function () {
     $headers = Estilo::tagged(['headers']);
 
     expect($headers)->toHaveCount(2)
-        ->and($headers)->toHaveKeys(['main-title', 'sub-title']);
+        ->and($headers)->toContain('main-title', 'sub-title');
+});
+
+test('it renders full style sheet', function () {
+    expect(Estilo::styleSheet())
+        ->toBe("<style>\n\tmain-title { color: red; font-size: 20px; }\n\tsub-title { color: blue; font-size: 15px; }\n</style>");
+});
+
+test('it renders style sheet for tags', function () {
+    expect(Estilo::styleSheet(['common']))
+        ->toBe("<style>\n\tmain-title { color: red; font-size: 20px; }\n</style>");
 });
