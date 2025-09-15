@@ -7,7 +7,7 @@ use WendellAdriel\Estilo\Estilo;
 
 test('it defines and forgets a style', function () {
     Estilo::define(
-        name: 'test',
+        selector: 'test',
         css: CSS::make()
             ->paddingTop('10px'),
     );
@@ -35,7 +35,7 @@ test('it returns tagged list', function () {
 
 test('it defines and forgets a tagged style', function () {
     Estilo::define(
-        name: 'test',
+        selector: 'test',
         css: CSS::make()
             ->paddingTop('10px'),
         tags: ['test'],

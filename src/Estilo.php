@@ -15,25 +15,25 @@ final class Estilo
     /**
      * @param  array<string>  $tags
      */
-    public static function define(string $name, CSS $css, array $tags = []): void
+    public static function define(string $selector, CSS $css, array $tags = []): void
     {
-        self::$styles[$name] = $css;
+        self::$styles[$selector] = $css;
 
         foreach ($tags as $tag) {
-            self::$tagged[$tag][$name] = true;
+            self::$tagged[$tag][$selector] = true;
         }
     }
 
-    public static function forget(string $name): void
+    public static function forget(string $selector): void
     {
-        if (! isset(self::$styles[$name])) {
+        if (! isset(self::$styles[$selector])) {
             return;
         }
 
-        unset(self::$styles[$name]);
+        unset(self::$styles[$selector]);
 
         foreach (self::$tagged as &$tagList) {
-            unset($tagList[$name]);
+            unset($tagList[$selector]);
         }
     }
 
@@ -66,14 +66,14 @@ final class Estilo
         return self::$styles;
     }
 
-    public static function style(string $name): ?CSS
+    public static function style(string $selector): ?CSS
     {
-        return self::$styles[$name] ?? null;
+        return self::$styles[$selector] ?? null;
     }
 
-    public static function styleText(string $name): ?string
+    public static function styleText(string $selector): ?string
     {
-        return self::style($name)?->style();
+        return self::style($selector)?->style();
     }
 
     public static function styleSheet(array $tags = []): string
@@ -86,7 +86,7 @@ final class Estilo
         $result = "<style>\n";
 
         $result = $selectedStyles->reduce(
-            callback: fn (string $result, CSS $css, string $name) => "{$result}\t{$name} { {$css->style()} }\n",
+            callback: fn (string $result, CSS $css, string $selector) => "{$result}\t{$selector} { {$css->style()} }\n",
             initial: $result,
         );
 

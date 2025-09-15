@@ -6,7 +6,7 @@ use WendellAdriel\Estilo\CSS;
 use WendellAdriel\Estilo\Estilo;
 
 Estilo::define(
-    name: 'main-title',
+    selector: 'main-title',
     css: CSS::make()
         ->color('red')
         ->fontSize('20px'),
@@ -14,7 +14,7 @@ Estilo::define(
 );
 
 Estilo::define(
-    name: 'sub-title',
+    selector: 'sub-title',
     css: CSS::make()
         ->color('blue')
         ->fontSize('15px'),
