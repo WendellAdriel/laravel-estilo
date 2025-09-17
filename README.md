@@ -14,7 +14,9 @@
 </p>
 
 > [!WARNING]  
-> This package is not stable yet, and breaking changes can be added even in minor versions before it reaches v1.0.0
+> This package is not stable yet, and breaking changes can be added even in minor versions before it reaches v1.0.0.
+> 
+>Check the **[Changelog](CHANGELOG.md)** for breaking changes, features and bug fixes.
 
 ## Features
 
