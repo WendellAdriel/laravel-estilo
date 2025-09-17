@@ -39,43 +39,14 @@ final class Estilo
         }
     }
 
-    /**
-     * @param  array<string>  $tags
-     * @return array<string>
-     */
-    public static function tagged(array $tags): array
+    public static function has(string $selector): bool
     {
-        $result = [];
-
-        foreach ($tags as $tag) {
-            if (! isset(self::$tagged[$tag])) {
-                continue;
-            }
-            $result = [
-                ...$result,
-                ...self::$tagged[$tag],
-            ];
-        }
-
-        return array_keys($result);
+        return self::style($selector) !== null;
     }
 
-    /**
-     * @return array<string,Style>
-     */
-    public static function styles(): array
+    public static function use(string $selector): string
     {
-        return self::$styles;
-    }
-
-    public static function style(string $selector): ?Style
-    {
-        return self::$styles[$selector] ?? null;
-    }
-
-    public static function styleText(string $selector): ?string
-    {
-        return self::style($selector)?->style();
+        return self::style($selector)?->style() ?? '';
     }
 
     /**
@@ -96,5 +67,31 @@ final class Estilo
         );
 
         return "{$result}</style>";
+    }
+
+    /**
+     * @param  array<string>  $tags
+     * @return array<string>
+     */
+    private static function tagged(array $tags): array
+    {
+        $result = [];
+
+        foreach ($tags as $tag) {
+            if (! isset(self::$tagged[$tag])) {
+                continue;
+            }
+            $result = [
+                ...$result,
+                ...self::$tagged[$tag],
+            ];
+        }
+
+        return array_keys($result);
+    }
+
+    private static function style(string $selector): ?Style
+    {
+        return self::$styles[$selector] ?? null;
     }
 }
