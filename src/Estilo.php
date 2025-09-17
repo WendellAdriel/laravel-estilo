@@ -11,7 +11,7 @@ final class Estilo
     /** @var array<string,Style> */
     private static array $styles = [];
 
-    /** @var array<string,array<string>> */
+    /** @var array<string,array<string,bool>> */
     private static array $tagged = [];
 
     /**
@@ -78,6 +78,9 @@ final class Estilo
         return self::style($selector)?->style();
     }
 
+    /**
+     * @param  array<string>  $tags
+     */
     public static function styleSheet(array $tags = []): string
     {
         $selectedStyles = collect(self::$styles);

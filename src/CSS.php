@@ -504,6 +504,9 @@ final class CSS implements Style
     /** @var array<string,string> */
     private array $properties;
 
+    /**
+     * @param  array<int|string>  $arguments
+     */
     public function __call(string $name, array $arguments): CSS
     {
         $propertyName = Str::kebab($name);
