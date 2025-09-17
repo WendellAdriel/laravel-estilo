@@ -7,7 +7,7 @@ use WendellAdriel\Estilo\Estilo;
 
 Estilo::define(
     selector: '.main-title',
-    css: CSS::make()
+    style: CSS::make()
         ->color('red')
         ->fontSize('20px'),
     tags: ['common', 'headers'],
@@ -15,7 +15,7 @@ Estilo::define(
 
 Estilo::define(
     selector: '#hero-title',
-    css: CSS::make()
+    style: CSS::make()
         ->color('blue')
         ->fontSize('30px'),
     tags: ['headers'],
@@ -23,7 +23,7 @@ Estilo::define(
 
 Estilo::define(
     selector: 'a',
-    css: CSS::make()
+    style: CSS::make()
         ->color('green')
         ->borderBottom('1px', 'dashed', 'green'),
 );

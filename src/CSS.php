@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WendellAdriel\Estilo;
 
 use Illuminate\Support\Str;
+use WendellAdriel\Estilo\Contracts\Style;
 
 /**
  * @method CSS accentColor(...$params)
@@ -498,7 +499,7 @@ use Illuminate\Support\Str;
  * @method CSS zIndex(...$params)
  * @method CSS zoom(...$params)
  */
-final class CSS
+final class CSS implements Style
 {
     /** @var array<string,string> */
     private array $properties;

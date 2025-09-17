@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace WendellAdriel\Estilo;
 
+use WendellAdriel\Estilo\Contracts\Style;
+
 final class Estilo
 {
-    /** @var array<string,CSS> */
+    /** @var array<string,Style> */
     private static array $styles = [];
 
     /** @var array<string,array<string>> */
@@ -15,9 +17,9 @@ final class Estilo
     /**
      * @param  array<string>  $tags
      */
-    public static function define(string $selector, CSS $css, array $tags = []): void
+    public static function define(string $selector, Style $style, array $tags = []): void
     {
-        self::$styles[$selector] = $css;
+        self::$styles[$selector] = $style;
 
         foreach ($tags as $tag) {
             self::$tagged[$tag][$selector] = true;
@@ -39,7 +41,7 @@ final class Estilo
 
     /**
      * @param  array<string>  $tags
-     * @return array<string,CSS>
+     * @return array<string>
      */
     public static function tagged(array $tags): array
     {
@@ -59,14 +61,14 @@ final class Estilo
     }
 
     /**
-     * @return array<string,CSS>
+     * @return array<string,Style>
      */
     public static function styles(): array
     {
         return self::$styles;
     }
 
-    public static function style(string $selector): ?CSS
+    public static function style(string $selector): ?Style
     {
         return self::$styles[$selector] ?? null;
     }
@@ -86,7 +88,7 @@ final class Estilo
         $result = "<style>\n";
 
         $result = $selectedStyles->reduce(
-            callback: fn (string $result, CSS $css, string $selector) => "{$result}\t{$selector} { {$css->style()} }\n",
+            callback: fn (string $result, Style $style, string $selector) => "{$result}\t{$selector} { {$style->style()} }\n",
             initial: $result,
         );
 
