@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace WendellAdriel\Estilo;
 
-use WendellAdriel\Estilo\Contracts\Style;
-
 final class Estilo
 {
-    /** @var array<string,Style> */
+    /** @var array<string,CSS> */
     private static array $styles = [];
 
     /** @var array<string,array<string,bool>> */
@@ -17,9 +15,9 @@ final class Estilo
     /**
      * @param  array<string>  $tags
      */
-    public static function define(string $selector, Style $style, array $tags = []): void
+    public static function define(string $selector, CSS $css, array $tags = []): void
     {
-        self::$styles[$selector] = $style;
+        self::$styles[$selector] = $css;
 
         foreach ($tags as $tag) {
             self::$tagged[$tag][$selector] = true;
@@ -62,7 +60,7 @@ final class Estilo
         $result = "<style>\n";
 
         $result = $selectedStyles->reduce(
-            callback: fn (string $result, Style $style, string $selector) => "{$result}\t{$selector} { {$style->style()} }\n",
+            callback: fn (string $result, CSS $css, string $selector) => "{$result}\t{$selector} { {$css->style()} }\n",
             initial: $result,
         );
 
@@ -90,7 +88,7 @@ final class Estilo
         return array_keys($result);
     }
 
-    private static function style(string $selector): ?Style
+    private static function style(string $selector): ?CSS
     {
         return self::$styles[$selector] ?? null;
     }

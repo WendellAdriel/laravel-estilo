@@ -8,7 +8,7 @@ use WendellAdriel\Estilo\Estilo;
 test('it defines and forgets a style', function () {
     Estilo::define(
         selector: '.test',
-        style: CSS::make()
+        css: CSS::make()
             ->paddingTop('10px'),
     );
 
@@ -24,7 +24,7 @@ test('it defines and forgets a style', function () {
 
 test('it renders full style sheet', function () {
     expect(Estilo::styleSheet())
-        ->toBe("<style>\n\t.main-title { color: red; font-size: 20px; }\n\t#hero-title { color: blue; font-size: 30px; }\n\ta { color: green; border-bottom: 1px dashed green; }\n</style>");
+        ->toBe("<style>\n\tbody { padding: 10px; }\n\t.main-title { color: red; font-size: 20px; }\n\t#hero-title { color: blue; font-size: 30px; }\n\ta { color: green; border-bottom: 1px dashed green; }\n</style>");
 });
 
 test('it renders style sheet for tags', function () {

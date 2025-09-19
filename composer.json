@@ -12,7 +12,10 @@
     "autoload": {
         "psr-4": {
             "WendellAdriel\\Estilo\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
