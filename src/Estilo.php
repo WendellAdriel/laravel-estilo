@@ -9,7 +9,7 @@ final class Estilo
     /** @var array<string,CSS> */
     private static array $styles = [];
 
-    /** @var array<string,array<string>> */
+    /** @var array<string,array<string,bool>> */
     private static array $tagged = [];
 
     /**
@@ -37,11 +37,41 @@ final class Estilo
         }
     }
 
+    public static function has(string $selector): bool
+    {
+        return self::style($selector) !== null;
+    }
+
+    public static function use(string $selector): string
+    {
+        return self::style($selector)?->style() ?? '';
+    }
+
     /**
      * @param  array<string>  $tags
-     * @return array<string,CSS>
      */
-    public static function tagged(array $tags): array
+    public static function styleSheet(array $tags = []): string
+    {
+        $selectedStyles = collect(self::$styles);
+        if ($tags !== []) {
+            $selectedStyles = $selectedStyles->only(self::tagged($tags));
+        }
+
+        $result = "<style>\n";
+
+        $result = $selectedStyles->reduce(
+            callback: fn (string $result, CSS $css, string $selector) => "{$result}\t{$selector} { {$css->style()} }\n",
+            initial: $result,
+        );
+
+        return "{$result}</style>";
+    }
+
+    /**
+     * @param  array<string>  $tags
+     * @return array<string>
+     */
+    private static function tagged(array $tags): array
     {
         $result = [];
 
@@ -58,38 +88,8 @@ final class Estilo
         return array_keys($result);
     }
 
-    /**
-     * @return array<string,CSS>
-     */
-    public static function styles(): array
-    {
-        return self::$styles;
-    }
-
-    public static function style(string $selector): ?CSS
+    private static function style(string $selector): ?CSS
     {
         return self::$styles[$selector] ?? null;
-    }
-
-    public static function styleText(string $selector): ?string
-    {
-        return self::style($selector)?->style();
-    }
-
-    public static function styleSheet(array $tags = []): string
-    {
-        $selectedStyles = collect(self::$styles);
-        if ($tags !== []) {
-            $selectedStyles = $selectedStyles->only(self::tagged($tags));
-        }
-
-        $result = "<style>\n";
-
-        $result = $selectedStyles->reduce(
-            callback: fn (string $result, CSS $css, string $selector) => "{$result}\t{$selector} { {$css->style()} }\n",
-            initial: $result,
-        );
-
-        return "{$result}</style>";
     }
 }

@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 use WendellAdriel\Estilo\CSS;
 use WendellAdriel\Estilo\Estilo;
+use WendellAdriel\Estilo\EstiloWind;
+
+Estilo::define(
+    selector: 'body',
+    css: CSS::make()
+        ->padding('10px'),
+    tags: ['base'],
+);
 
 Estilo::define(
     selector: '.main-title',
@@ -26,6 +34,11 @@ Estilo::define(
     css: CSS::make()
         ->color('green')
         ->borderBottom('1px', 'dashed', 'green'),
+);
+
+EstiloWind::define(
+    name: 'feat-text',
+    classes: ['text-xl', 'text-amber-500', 'font-bold'],
 );
 
 return [];
