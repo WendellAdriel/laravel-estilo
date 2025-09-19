@@ -20,7 +20,10 @@
     "autoload-dev": {
         "psr-4": {
             "WendellAdriel\\Estilo\\Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "support": {
         "issues": "https://github.com/WendellAdriel/laravel-estilo/issues",
