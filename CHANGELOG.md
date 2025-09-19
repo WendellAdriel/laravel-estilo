@@ -6,7 +6,6 @@ All notable changes to this project will be documented in this file.
 
 ### 🚨 Breaking changes
 
-- `Estilo::define()` second parameter was renamed from `css` to `style`
 - `Estilo::tagged()` was set to `private`
 - `Estilo::style()` was set to `private`
 - `Estilo::styles()` was removed
@@ -14,4 +13,6 @@ All notable changes to this project will be documented in this file.
 
 ### 🚀 Features
 
-- TBD
+- TailwindCSS support
+- `estilo()` helper function for inline styles
+- `estilowind()` helper function for TailwindCSS support
