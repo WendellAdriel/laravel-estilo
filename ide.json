@@ -1,0 +1,25 @@
+{
+    "$schema": "https://laravel-ide.com/schema/laravel-ide-v2.json",
+    "completions": [
+        {
+            "complete": "cssClassName",
+            "condition": [
+                {
+                    "classFqn": [
+                        "WendellAdriel\\Estilo\\EstiloWind"
+                    ],
+                    "methodNames": [
+                        "define"
+                    ],
+                    "parameterNames": [
+                        "classes"
+                    ],
+                    "parameters": [
+                        2
+                    ],
+                    "place": "arrayValue"
+                }
+            ]
+        }
+    ]
+}
