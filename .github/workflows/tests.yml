@@ -1,6 +1,9 @@
 name: run-tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
 
 jobs:
     test:
@@ -8,12 +11,17 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                php: [8.4, 8.3, 8.2]
-                laravel: [12.*]
+                php: [8.2, 8.3, 8.4, 8.5]
+                laravel: [12.*, 13.*]
                 dependency-version: [prefer-stable]
+                exclude:
+                  - laravel: 13.*
+                    php: 8.2
                 include:
                   - laravel: 12.*
                     testbench: 10.*
+                  - laravel: 13.*
+                    testbench: 11.*
 
         name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.3.0
+
+- Added support for Laravel 13
+
 ## 0.2.0
 
 ### 🚨 Breaking changes
